@@ -1,0 +1,648 @@
+/* ==========================================
+   CSS CUSTOM PROPERTIES
+========================================== */
+
+:root {
+    --green: #49B74D;
+    --green-dark: #3da641;
+    --black: #000;
+    --white: #fff;
+    --nav-height: 68px;
+    --transition: 0.3s ease;
+}
+
+/* ==========================================
+   GLOBAL RESET
+   FIX: Added html overflow-x:hidden alongside body.
+   iOS Safari ignores overflow-x on body alone —
+   you must set it on BOTH html AND body to prevent
+   horizontal scroll on all mobile browsers.
+========================================== */
+
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    overflow-x: hidden;              /* FIX: Prevents horizontal scroll on iOS Safari */
+    -webkit-text-size-adjust: 100%;  /* FIX: Prevents iOS from auto-resizing text on rotation */
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background: #f8f8f8;
+    color: #222;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    min-height: 100vh;
+}
+
+/* FIX: Removes blue tap highlight on all touch devices (Android + iOS) */
+a,
+button {
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* ==========================================
+   HEADER / NAVBAR
+========================================== */
+
+.navbar {
+    width: 100%;
+    background: var(--white);
+    border-bottom: 1px solid #f2f2f2;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    /* FIX: Forces GPU layer — prevents sticky header from flickering on Safari */
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    will-change: transform;
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+    height: var(--nav-height);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    /* FIX: Do NOT use flex-wrap here on desktop —
+       wrapping pushes nav below logo and breaks layout */
+}
+
+/* ==========================================
+   LOGO
+========================================== */
+
+.logo {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    flex-shrink: 0;    /* FIX: Prevents logo from shrinking in tight flex containers */
+}
+
+.logo img {
+    height: 42px;
+    width: auto;
+    display: block;
+}
+
+/* ==========================================
+   NAVIGATION LINKS
+========================================== */
+
+.nav-links {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 32px;
+    list-style: none;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #111;
+    font-size: 15px;
+    font-weight: 600;
+    white-space: nowrap;                 /* FIX: Prevents nav items wrapping mid-word */
+    transition: color var(--transition);
+}
+
+.nav-links a:hover,
+.nav-links a:focus-visible {
+    color: var(--green);
+    outline: none;
+}
+
+/* ==========================================
+   HAMBURGER / BURGER BUTTON
+   FIX: Changed from <div> to <button> in HTML for
+   proper keyboard and screen reader support.
+   Using <button> also gives free Enter/Space key handling.
+========================================== */
+
+.menu-toggle {
+    display: none;                /* Hidden by default on desktop */
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 8px;                 /* FIX: Larger touch target (44px+ total) */
+    border-radius: 6px;
+    flex-shrink: 0;
+    -webkit-appearance: none;     /* FIX: Removes default iOS button styling */
+    appearance: none;
+    width: 44px;
+    height: 44px;
+}
+
+.menu-toggle:focus-visible {
+    outline: 2px solid var(--green);
+    outline-offset: 2px;
+}
+
+.menu-toggle span {
+    display: block;
+    width: 24px;
+    height: 2.5px;
+    background: #111;
+    border-radius: 10px;
+    /* FIX: Animate bars to X on open */
+    transition: transform 0.3s ease, opacity 0.3s ease, width 0.3s ease;
+    transform-origin: center;
+}
+
+/* Animate burger → X when nav is open */
+.menu-toggle.is-open span:nth-child(1) {
+    transform: translateY(7.5px) rotate(45deg);
+}
+.menu-toggle.is-open span:nth-child(2) {
+    opacity: 0;
+    transform: scaleX(0);
+}
+.menu-toggle.is-open span:nth-child(3) {
+    transform: translateY(-7.5px) rotate(-45deg);
+}
+
+/* ==========================================
+   MOBILE CTA (inside nav, hidden on desktop)
+========================================== */
+
+.mobile-btn {
+    display: none;    /* Hidden on desktop, shown in mobile nav */
+}
+
+/* ==========================================
+   DESKTOP CTA BUTTON
+========================================== */
+
+.demo-btn {
+    flex-shrink: 0;               /* FIX: Prevents button shrinking in nav bar */
+    min-width: 160px;
+    height: 48px;
+    background: var(--green);
+    color: var(--white);
+    text-decoration: none;
+    border-radius: 999px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    font-size: 15px;
+    font-weight: 600;
+    white-space: nowrap;
+    transition: background var(--transition), transform var(--transition);
+}
+
+.demo-btn:hover {
+    background: var(--green-dark);
+}
+
+.demo-btn:active {
+    transform: scale(0.97);
+}
+
+.demo-btn span {
+    font-size: 16px;
+    line-height: 1;
+}
+
+/* ==========================================
+   FOOTER
+========================================== */
+
+.footer {
+    background: var(--black);
+    color: var(--white);
+    padding: 70px 20px 40px;
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 80px;              /* FIX: Reduced from 120px — 120px overflowed on mid-size screens */
+    flex-wrap: wrap;        /* FIX: Always allow wrapping so footer doesn't overflow */
+}
+
+.footer-column {
+    display: flex;
+    flex-direction: column;
+    min-width: 160px;
+}
+
+.footer-column h4 {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    white-space: nowrap;
+}
+
+.footer-column a {
+    color: #d5d5d5;
+    text-decoration: none;
+    margin-bottom: 12px;
+    font-size: 14px;
+    transition: color var(--transition);
+}
+
+.footer-column a:hover {
+    color: var(--white);
+}
+
+/* ==========================================
+   PAYMENT ICONS
+   FIX 1: flex-wrap so icons never overflow on small screens.
+   FIX 2: Each icon sits inside a frosted pill card so it has
+          a consistent shape on dark background.
+   FIX 3: mix-blend-mode: luminosity + filter tricks make
+          white-background JPGs (master, amx, visa, etc.)
+          appear to blend into the black footer.
+          For truly transparent-background PNGs (PayPal, Google Pay)
+          the filter inverts the dark logo to white.
+========================================== */
+
+.payment-icons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px 24px;
+    align-items: center;
+    max-width: 280px;
+}
+
+/* No backgrounds — logos sit directly on the black footer */
+.payment-icons img {
+    width: 72px;
+    height: 40px;
+    object-fit: contain;
+    object-position: left center;
+    display: block;
+    background: none;
+    border: none;
+    border-radius: 0;
+    padding: 0;
+    filter: brightness(1) contrast(1.1);
+    transition: opacity var(--transition), transform var(--transition);
+    opacity: 0.9;
+}
+
+.payment-icons img:hover {
+    opacity: 1;
+    transform: translateY(-1px);
+}
+
+/* ==========================================
+   SOCIAL ICONS ROW
+   FIX: Wrapping social icons in a row container
+   with overflow:hidden stops them from causing
+   horizontal scroll when the screen is narrow.
+   Using flexbox + flex-wrap means they ALWAYS
+   reflow instead of overflowing.
+========================================== */
+
+.social-row {
+    max-width: 1200px;
+    margin: 60px auto 0;
+    padding: 0 4px;
+    overflow: hidden;      /* FIX: Contain any overflow within footer */
+}
+
+.social-icons {
+    display: flex;
+    flex-wrap: wrap;           /* FIX: Wrap on tiny screens instead of overflowing */
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+}
+
+/* FIX: Using a class .social-link for the anchor so styles are specific */
+.social-link {
+    width: 44px;
+    height: 44px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    /* Dark circle with subtle border — sits cleanly on black footer */
+    background: rgba(255, 255, 255, 0.10);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    /* SVG icons inherit this color via currentColor */
+    color: rgba(255, 255, 255, 0.75);
+    transition: background var(--transition), color var(--transition), transform var(--transition);
+    flex-shrink: 0;
+    text-decoration: none;
+}
+
+.social-link:hover {
+    background: rgba(255, 255, 255, 0.20);
+    color: #fff;
+    transform: translateY(-3px);
+}
+
+.social-link:focus-visible {
+    outline: 2px solid var(--green);
+    outline-offset: 2px;
+}
+
+/* SVG icons inherit color from the parent anchor via currentColor */
+.social-link svg {
+    display: block;
+    flex-shrink: 0;
+    /* Ensure currentColor propagates through fill and stroke */
+    fill: currentColor;
+}
+
+/* Instagram uses stroke — don't override with fill */
+.social-link svg[stroke="currentColor"] {
+    fill: none;
+    stroke: currentColor;
+}
+
+/* ==========================================
+   TABLET  (≤ 1024px)
+========================================== */
+
+@media (max-width: 1024px) {
+
+    .nav-links {
+        gap: 22px;
+    }
+
+    .nav-links a {
+        font-size: 14px;
+    }
+
+    .demo-btn {
+        min-width: 140px;
+        height: 44px;
+        font-size: 14px;
+    }
+
+    .footer-container {
+        gap: 48px;
+    }
+}
+
+/* ==========================================
+   TABLET  (≤ 768px)
+   Hamburger appears, desktop nav hides.
+========================================== */
+
+@media (max-width: 768px) {
+
+    /* Show hamburger, hide desktop CTA */
+    .menu-toggle {
+        display: flex;
+    }
+
+    .demo-btn {
+        display: none;
+    }
+
+    /* Nav container: no wrapping — logo + burger stay on one line */
+    .nav-container {
+        padding: 0 16px;
+        gap: 8px;
+        flex-wrap: nowrap;         /* FIX: Keep logo and burger on same row */
+        position: relative;        /* Needed for absolutely-positioned dropdown */
+    }
+
+    .logo img {
+        height: 36px;
+    }
+
+    /* ── Mobile nav panel ──────────────────────────────
+       FIX: Instead of toggling display:none ↔ display:flex
+       (which causes a layout flash in Safari WebKit),
+       use max-height + opacity transition.
+       display:block is always set; visibility + max-height
+       animate smoothly on all browsers including Safari.
+    ──────────────────────────────────────────────────── */
+    .nav-links {
+        display: flex !important;          /* Always in flow */
+        flex-direction: column;
+        align-items: center;
+        gap: 0;
+        width: 100%;
+        background: var(--white);
+        border-top: 1px solid #eee;
+        box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+
+        /* Closed state */
+        max-height: 0;
+        overflow: hidden;
+        opacity: 0;
+        pointer-events: none;
+        visibility: hidden;
+
+        /* Transitions */
+        transition:
+            max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+            opacity 0.25s ease,
+            visibility 0s linear 0.35s;  /* Delay visibility so it hides AFTER animation */
+
+        /* Position below header */
+        position: absolute;
+        top: var(--nav-height);
+        left: 0;
+        right: 0;
+        z-index: 999;
+    }
+
+    /* Open state */
+    .nav-links.active {
+        max-height: 400px;           /* Large enough for all items */
+        opacity: 1;
+        pointer-events: auto;
+        visibility: visible;
+        transition:
+            max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+            opacity 0.25s ease,
+            visibility 0s linear 0s;   /* Show immediately on open */
+    }
+
+    .nav-links a {
+        width: 100%;
+        text-align: center;
+        padding: 14px 24px;
+        font-size: 15px;
+        border-bottom: 1px solid #f5f5f5;
+        color: #111;
+    }
+
+    .nav-links a:last-child {
+        border-bottom: none;
+    }
+
+    .nav-links a:hover {
+        background: #f9f9f9;
+    }
+
+    /* Show mobile CTA inside the dropdown */
+    .mobile-btn {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: calc(100% - 48px);
+        max-width: 260px;
+        height: 48px;
+        background: var(--green);
+        color: var(--white) !important;
+        text-decoration: none;
+        border-radius: 999px;
+        font-weight: 600;
+        font-size: 15px;
+        margin: 16px auto 8px;
+        border-bottom: none !important;
+    }
+
+    .mobile-btn:hover {
+        background: var(--green-dark);
+        background-color: var(--green-dark) !important;
+    }
+
+    /* Footer */
+    .footer {
+        padding: 50px 20px 30px;
+    }
+
+    .footer-container {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 40px;
+    }
+
+    .footer-column {
+        align-items: center;
+        min-width: unset;
+        width: 100%;
+        max-width: 320px;
+    }
+
+    .payment-icons {
+        justify-content: center;
+        max-width: 260px;
+        gap: 16px 20px;
+    }
+
+    .payment-icons img {
+        width: 66px;
+        height: 36px;
+    }
+
+    /* Social icons: 6 in a row on tablet-mobile */
+    .social-icons {
+        gap: 12px;
+    }
+}
+
+/* ==========================================
+   SMALL MOBILE  (≤ 480px)
+   iPhone SE / small Android
+========================================== */
+
+@media (max-width: 480px) {
+
+    .logo img {
+        height: 32px;
+    }
+
+    .footer-container {
+        gap: 32px;
+    }
+
+    .payment-icons {
+        max-width: 220px;
+        gap: 14px 16px;
+    }
+
+    .payment-icons img {
+        width: 58px;
+        height: 32px;
+        padding: 0;
+    }
+
+    /* Social icons: still 6-across but smaller gap */
+    .social-icons {
+        gap: 10px;
+    }
+
+    .social-link {
+        width: 40px;
+        height: 40px;
+    }
+
+    .social-link img {
+        width: 20px;
+        height: 20px;
+    }
+}
+
+/* ==========================================
+   VERY SMALL MOBILE  (≤ 360px)
+   Older Android / iPhone SE 1st gen
+========================================== */
+
+@media (max-width: 360px) {
+
+    .nav-container {
+        padding: 0 12px;
+    }
+
+    .logo img {
+        height: 28px;
+    }
+
+    .payment-icons {
+        max-width: 190px;
+        gap: 12px 14px;
+    }
+
+    .payment-icons img {
+        width: 50px;
+        height: 28px;
+        padding: 0;
+    }
+
+    .social-icons {
+        gap: 8px;
+    }
+
+    .social-link {
+        width: 36px;
+        height: 36px;
+    }
+
+    .social-link img {
+        width: 18px;
+        height: 18px;
+    }
+}
+
+/* ==========================================
+   SAFE AREA INSETS (iPhone notch / Dynamic Island)
+   FIX: Adds padding for home bar on iPhones with
+   no physical home button (iPhone X and newer).
+========================================== */
+
+@supports (padding-bottom: env(safe-area-inset-bottom)) {
+    .footer {
+        padding-bottom: calc(40px + env(safe-area-inset-bottom));
+    }
+}
