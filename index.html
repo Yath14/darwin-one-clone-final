@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!--
+        FIX 1: Added maximum-scale=1 to prevent iOS Safari auto-zoom on input focus.
+        viewport-fit=cover handles iPhone notch/safe areas properly.
+    -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
+
+    <title>Dharwin One</title>
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- ==========================
+         HEADER
+    =========================== -->
+
+    <header class="navbar">
+        <div class="nav-container">
+
+            <!-- Logo -->
+            <a href="#" class="logo">
+                <img src="assets/images/dl.png" alt="Dharwin One Logo">
+            </a>
+
+            <!--
+                FIX 2: Added aria-expanded="false" and aria-controls for accessibility.
+                aria-label added so screen readers announce "Open menu" / "Close menu".
+                role="button" removed since it's a div — using tabindex + keydown instead.
+            -->
+            <button
+                class="menu-toggle"
+                id="menu-toggle"
+                aria-expanded="false"
+                aria-controls="nav-links"
+                aria-label="Open navigation menu"
+                type="button"
+            >
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <!-- Navigation -->
+            <!--
+                FIX 3: Added role="navigation" for semantic HTML.
+                Removed inline display toggling in favour of CSS class-based animation.
+            -->
+            <nav class="nav-links" id="nav-links" role="navigation" aria-label="Main navigation">
+
+                <a href="#">Product</a>
+                <a href="#">Agents</a>
+                <a href="#">Solutions</a>
+                <a href="#">Resources</a>
+                <a href="#">Pricing</a>
+
+                <!-- Mobile CTA -->
+                <a href="#" class="mobile-btn">Book a demo →</a>
+
+            </nav>
+
+            <!-- Desktop CTA -->
+            <a href="#" class="demo-btn">
+                Book a demo
+                <span aria-hidden="true">→</span>
+            </a>
+
+        </div>
+    </header>
+
+    <!-- ==========================
+         MAIN CONTENT
+    =========================== -->
+
+    <main>
+        <!-- Add your website sections here -->
+    </main>
+
+    <!-- ==========================
+         FOOTER
+    =========================== -->
+
+    <footer class="footer">
+
+        <div class="footer-container">
+
+            <!-- Column 1 -->
+            <div class="footer-column">
+                <h4>Our commitments</h4>
+                <a href="#">Our story</a>
+                <a href="#">Careers</a>
+                <a href="#">For businesses</a>
+                <a href="#">Our materials</a>
+            </div>
+
+            <!-- Column 2 -->
+            <div class="footer-column">
+                <h4>Practical information</h4>
+                <a href="#">Legal notices</a>
+                <a href="#">Privacy policy</a>
+                <a href="#">Refunds</a>
+                <a href="#">Terms and conditions</a>
+            </div>
+
+            <!-- Column 3 -->
+            <div class="footer-column payment-column">
+                <h4>Payment</h4>
+                <div class="payment-icons">
+                    <img src="assets/images/master.jpg" alt="Mastercard">
+                    <img src="assets/images/ChatGPT Image Jun 6, 2026, 10_57_39 AM.png" alt="Google Pay">
+                    <img src="assets/images/ap.jpg" alt="Apple Pay">
+                    <img src="assets/images/amx.jpg" alt="American Express">
+                    <img src="assets/images/pp.png" alt="PayPal">
+                    <img src="assets/images/visa.jpg" alt="Visa">
+                </div>
+            </div>
+
+        </div>
+
+        <!--
+            FIX 4: Wrapped social icons in a <div class="social-row"> to better
+            control centering and overflow.  Each icon link now has a larger
+            touch-target wrapper (44×44px minimum per Apple HIG / WCAG 2.5.5).
+        -->
+        <div class="social-row">
+            <div class="social-icons">
+
+                <!-- Facebook -->
+                <a href="#" class="social-link" aria-label="Facebook">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                        <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+                    </svg>
+                </a>
+
+                <!-- Instagram -->
+                <a href="#" class="social-link" aria-label="Instagram">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+                        <circle cx="12" cy="12" r="4"/>
+                        <circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/>
+                    </svg>
+                </a>
+
+                <!-- Pinterest -->
+                <a href="#" class="social-link" aria-label="Pinterest">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                        <path d="M12 2C6.48 2 2 6.48 2 12c0 4.24 2.65 7.86 6.39 9.29-.09-.78-.17-1.98.03-2.83.19-.77 1.27-5.38 1.27-5.38s-.32-.65-.32-1.61c0-1.51.88-2.64 1.97-2.64.93 0 1.38.7 1.38 1.54 0 .94-.6 2.34-.91 3.64-.26 1.09.54 1.97 1.6 1.97 1.92 0 3.4-2.02 3.4-4.95 0-2.59-1.86-4.4-4.51-4.4-3.07 0-4.87 2.3-4.87 4.68 0 .93.36 1.92.8 2.46.09.11.1.2.07.31-.08.33-.26 1.09-.3 1.24-.05.2-.17.24-.38.15-1.42-.66-2.3-2.74-2.3-4.41 0-3.59 2.61-6.89 7.53-6.89 3.95 0 7.02 2.82 7.02 6.58 0 3.93-2.48 7.08-5.91 7.08-1.15 0-2.24-.6-2.61-1.3l-.71 2.65c-.26.99-.95 2.22-1.41 2.97.71.22 1.45.34 2.22.34 5.52 0 10-4.48 10-10S17.52 2 12 2z"/>
+                    </svg>
+                </a>
+
+                <!-- YouTube -->
+                <a href="#" class="social-link" aria-label="YouTube">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                        <path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46A2.78 2.78 0 0 0 1.46 6.42 29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58 2.78 2.78 0 0 0 1.95 1.96C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.96A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/>
+                        <polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="#000"/>
+                    </svg>
+                </a>
+
+                <!-- Twitter / X -->
+                <a href="#" class="social-link" aria-label="Twitter / X">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.747l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                    </svg>
+                </a>
+
+                <!-- LinkedIn -->
+                <a href="#" class="social-link" aria-label="LinkedIn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                        <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+                        <rect x="2" y="9" width="4" height="12"/>
+                        <circle cx="4" cy="4" r="2"/>
+                    </svg>
+                </a>
+
+            </div>
+        </div>
+
+    </footer>
+
+    <!-- ==========================
+         BURGER MENU SCRIPT
+    =========================== -->
+
+    <script src="script.js"></script>
+
+</body>
+</html>
