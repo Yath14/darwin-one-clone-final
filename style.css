@@ -221,6 +221,133 @@ button {
 }
 
 /* ==========================================
+   HERO SECTION
+========================================== */
+
+.hero {
+    background: #fff;
+    padding: 100px 24px 110px;
+    text-align: center;
+}
+
+.hero-container {
+    max-width: 780px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.hero-eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--green);
+    margin-bottom: 32px;
+}
+
+.hero-diamond {
+    font-size: 9px;
+    line-height: 1;
+}
+
+.hero-headline {
+    font-size: clamp(52px, 8vw, 92px);
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    color: #0a0a0a;
+    margin-bottom: 28px;
+}
+
+.hero-sub {
+    font-size: clamp(15px, 2vw, 18px);
+    font-weight: 400;
+    line-height: 1.65;
+    color: #555;
+    max-width: 600px;
+    margin-bottom: 44px;
+}
+
+.hero-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    height: 54px;
+    padding: 0 32px;
+    background: var(--green);
+    color: #fff;
+    text-decoration: none;
+    border-radius: 999px;
+    font-size: 16px;
+    font-weight: 600;
+    white-space: nowrap;
+    -webkit-tap-highlight-color: transparent;
+    transition: background var(--transition), transform var(--transition);
+}
+
+.hero-btn:hover {
+    background: var(--green-dark);
+}
+
+.hero-btn:active {
+    transform: scale(0.97);
+}
+
+.hero-btn span {
+    font-size: 18px;
+    line-height: 1;
+}
+
+@media (max-width: 768px) {
+    .hero {
+        padding: 72px 20px 80px;
+    }
+    .hero-eyebrow {
+        font-size: 11px;
+        gap: 8px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    .hero-headline {
+        font-size: clamp(36px, 10vw, 56px);
+        margin-bottom: 20px;
+    }
+    .hero-sub {
+        font-size: 15px;
+        margin-bottom: 36px;
+    }
+    .hero-btn {
+        height: 50px;
+        padding: 0 28px;
+        font-size: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero {
+        padding: 56px 16px 64px;
+    }
+    .hero-headline {
+        font-size: clamp(32px, 11vw, 44px);
+        letter-spacing: -0.025em;
+    }
+    .hero-sub {
+        font-size: 14px;
+        line-height: 1.6;
+    }
+    .hero-btn {
+        width: 100%;
+        max-width: 280px;
+    }
+}
+
+/* ==========================================
    FOOTER
 ========================================== */
 
